@@ -435,11 +435,14 @@
 footer.site-footer{padding:48px 0 32px;}
 .footer-grid{
   display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
-  gap:32px;
+  grid-template-columns:1.1fr 0.9fr 0.9fr 0.9fr;
+  gap:28px;
   margin-bottom:32px;
 }
-@media (max-width:720px){
+@media (max-width:900px){
+  .footer-grid{grid-template-columns:1fr 1fr; gap:28px;}
+}
+@media (max-width:520px){
   .footer-grid{grid-template-columns:1fr; gap:28px;}
 }
 .footer-col h4{
