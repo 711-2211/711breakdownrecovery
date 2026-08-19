@@ -733,3 +733,332 @@ footer.site-footer{padding:48px 0 32px;}
 
 .related-services a:hover{color:var(--amber);}
 
+/* ---- service badge (icon treatment) ---- */
+.service-badge{
+  width:56px;height:56px;
+  background:var(--amber);
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+  flex-shrink:0;
+}
+.service-badge svg{width:28px;height:28px;color:var(--asphalt);}
+.service-badge.sm{width:44px;height:44px;border-radius:8px;}
+.service-badge.sm svg{width:22px;height:22px;}
+
+/* ---- featured tag on homepage cards ---- */
+.featured-tag{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  color:var(--asphalt);
+  background:var(--amber);
+  padding:3px 9px;
+  border-radius:3px;
+  margin-bottom:14px;
+  text-transform:uppercase;
+}
+
+/* ---- quote / lead capture form ---- */
+.quote-form-section{
+  background:var(--asphalt-2);
+  border:1px solid rgba(242,169,59,0.3);
+  border-radius:8px;
+  padding:32px;
+  margin-top:36px;
+}
+.quote-form-section h2{
+  font-size:22px;
+  color:var(--paper);
+  margin-bottom:6px;
+  text-transform:none;
+}
+.quote-form-section .qf-sub{
+  color:var(--paper-dim);
+  font-size:14px;
+  margin-bottom:22px;
+}
+.quote-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.quote-form .field-full{grid-column:1 / -1;}
+@media (max-width:640px){
+  .quote-form{grid-template-columns:1fr;}
+}
+.quote-form label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;
+  letter-spacing:0.05em;
+  color:var(--paper-dim);
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.quote-form input,
+.quote-form select,
+.quote-form textarea{
+  width:100%;
+  background:var(--asphalt);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:4px;
+  padding:11px 13px;
+  color:var(--paper);
+  font-family:'Inter',sans-serif;
+  font-size:14.5px;
+}
+.quote-form input::placeholder,
+.quote-form textarea::placeholder{color:rgba(201,195,180,0.45);}
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus{
+  outline:none;
+  border-color:var(--amber);
+}
+.quote-form textarea{resize:vertical; min-height:80px;}
+.quote-form .qf-submit{margin-top:6px;}
+.quote-form .qf-submit .btn{width:100%; justify-content:center;}
+.quote-form .qf-note{
+  font-size:12px;
+  color:var(--paper-dim);
+  opacity:0.75;
+  margin-top:10px;
+  grid-column:1 / -1;
+}
+
+/* ---- recent jobs / photo gallery ---- */
+.job-photo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;
+}
+.job-photo{
+  aspect-ratio:4/3;
+  border:1.5px dashed rgba(242,169,59,0.35);
+  border-radius:6px;
+  background:var(--asphalt-2);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  color:var(--paper-dim);
+}
+.job-photo svg{width:26px;height:26px; color:rgba(242,169,59,0.5);}
+.job-photo span{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+}
+.job-photo.filled{
+  border-style:solid;
+  border-color:rgba(255,255,255,0.08);
+  padding:0;
+  overflow:hidden;
+}
+.job-photo.filled img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* ---- repair or replace diagram ---- */
+.repair-replace-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+@media (max-width:720px){
+  .repair-replace-grid{grid-template-columns:1fr;}
+}
+.rr-diagram{
+  display:flex;
+  justify-content:center;
+}
+.rr-diagram svg{width:100%; max-width:300px; height:auto;}
+.rr-col{
+  border-radius:6px;
+  padding:20px 24px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:var(--asphalt-2);
+}
+.rr-repair{border-left:4px solid var(--amber);}
+.rr-replace{border-left:4px solid var(--red); margin-top:16px;}
+.rr-col h3{
+  font-size:18px;
+  margin-bottom:3px;
+  text-transform:none;
+}
+.rr-repair h3{color:var(--amber);}
+.rr-replace h3{color:var(--red);}
+.rr-sub{
+  font-size:11.5px;
+  color:var(--paper-dim);
+  margin-bottom:14px;
+  font-family:'IBM Plex Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.rr-col ul{list-style:none;}
+.rr-col li{
+  font-size:14px;
+  color:var(--paper-dim);
+  padding:6px 0;
+  padding-left:18px;
+  position:relative;
+}
+.rr-col li::before{content:"—"; position:absolute; left:0;}
+.rr-repair li::before{color:var(--amber);}
+.rr-replace li::before{color:var(--red);}
+.rr-note{
+  margin-top:24px;
+  color:var(--paper-dim);
+  font-size:13.5px;
+  max-width:640px;
+}
+
+/* ---- FAQ accordion ---- */
+.faq-list{
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.faq-item{
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding:6px 0;
+}
+.faq-item summary{
+  cursor:pointer;
+  list-style:none;
+  padding:16px 4px;
+  font-size:15.5px;
+  font-weight:600;
+  color:var(--paper);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{
+  content:"+";
+  color:var(--amber);
+  font-size:20px;
+  flex-shrink:0;
+  transition:transform .15s ease;
+}
+.faq-item[open] summary::after{transform:rotate(45deg);}
+.faq-item p{
+  color:var(--paper-dim);
+  font-size:14.5px;
+  padding:0 4px 18px;
+  max-width:680px;
+}
+
+/* ---- value grid (why mobile tyre fitting) ---- */
+.value-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.value-card{
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px;
+  padding:22px 20px;
+  background:var(--asphalt-2);
+}
+.value-card h3{
+  font-size:15px;
+  font-weight:600;
+  color:var(--paper);
+  margin-bottom:8px;
+  text-transform:none;
+}
+.value-card p{font-size:13.5px; color:var(--paper-dim);}
+
+/* ---- quick search bar (UK plate style reg input) ---- */
+.quick-search-bar{
+  background:var(--asphalt);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:6px;
+  padding:20px;
+  display:grid;
+  grid-template-columns:1fr 1.3fr 1fr;
+  gap:16px;
+  margin-bottom:22px;
+}
+@media (max-width:720px){
+  .quick-search-bar{grid-template-columns:1fr;}
+}
+.quick-search-bar label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;
+  letter-spacing:0.05em;
+  color:var(--paper-dim);
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.quick-search-bar select,
+.quick-search-bar .qsb-postcode{
+  width:100%;
+  background:var(--asphalt-2);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:4px;
+  padding:11px 13px;
+  color:var(--paper);
+  font-family:'Inter',sans-serif;
+  font-size:14.5px;
+  height:46px;
+}
+.quick-search-bar select:focus,
+.quick-search-bar .qsb-postcode:focus{outline:none; border-color:var(--amber);}
+.uk-plate{
+  display:flex;
+  align-items:stretch;
+  border-radius:4px;
+  overflow:hidden;
+  border:2px solid #16140F;
+  height:46px;
+}
+.uk-plate-badge{
+  background:#003399;
+  color:#fff;
+  font-weight:700;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 10px;
+  font-family:'Inter',sans-serif;
+  letter-spacing:0.01em;
+  flex-shrink:0;
+}
+.uk-plate-input{
+  background:#F7C600;
+  color:#111;
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:19px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  text-align:center;
+  border:none;
+  padding:0 12px;
+  flex:1;
+  min-width:0;
+}
+.uk-plate-input::placeholder{color:rgba(17,17,17,0.4);}
+.uk-plate-input:focus{outline:2px solid var(--amber); outline-offset:-2px;}
+.qsb-helper{
+  grid-column:1 / -1;
+  font-size:12.5px;
+  color:var(--paper-dim);
+  opacity:0.85;
+  margin-top:-4px;
+}
+
