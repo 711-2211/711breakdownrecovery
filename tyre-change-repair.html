@@ -113,11 +113,27 @@
 </header>
 
 <section class="page-hero">
-  <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="index.html#services">Services</a> / Mobile Tyre Fitting</div>
-    <span class="featured-tag">★ Most requested service</span>
-    <h1>Mobile tyre fitting</h1>
-    <p class="lead">Flat tyre, blowout, or just need new tyres fitted without the trip to a garage? Our mobile fitters come to you — home, work, or roadside — anywhere in the UK.</p>
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+    <div>
+      <div class="breadcrumb"><a href="index.html">Home</a> / <a href="index.html#services">Services</a> / Mobile Tyre Fitting</div>
+      <span class="featured-tag">★ Most requested service</span>
+      <h1>Mobile tyre fitting</h1>
+      <p class="lead">Flat tyre, blowout, or just need new tyres fitted without the trip to a garage? Our mobile fitters come to you — home, work, or roadside — anywhere in the UK.</p>
+    </div>
+    <div class="hero-anim-icon" aria-hidden="true" style="flex-shrink:0;">
+      <svg class="spin-el" width="86" height="86" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="42" stroke="#F2A93B" stroke-width="9"/>
+        <circle cx="50" cy="50" r="42" stroke="#1C3A5E" stroke-width="9" stroke-dasharray="6 10"/>
+        <circle cx="50" cy="50" r="16" fill="#1C3A5E" stroke="rgba(255,255,255,0.15)"/>
+        <g stroke="rgba(255,255,255,0.25)" stroke-width="2">
+          <line x1="50" y1="38" x2="50" y2="30"/>
+          <line x1="50" y1="70" x2="50" y2="62"/>
+          <line x1="38" y1="50" x2="30" y2="50"/>
+          <line x1="70" y1="50" x2="62" y2="50"/>
+        </g>
+        <circle cx="50" cy="50" r="4" fill="#F5F1E8"/>
+      </svg>
+    </div>
   </div>
 </section>
 
@@ -367,7 +383,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>711 Breakdown Recovery</h4>
+        <div class="footer-brand-row"><span class="footer-logo-badge">711</span><h4 style="margin-bottom:0;">711 Breakdown Recovery</h4></div>
         <p style="color:var(--paper-dim); font-size:14px; max-width:280px;">Nationwide roadside assistance across the UK. Tyres, jump starts and towing recovery — 24/7.</p>
       </div>
       <div class="footer-col">
@@ -400,6 +416,21 @@
     </div>
   </div>
 </footer>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var targets = document.querySelectorAll('.section-head, .value-card, .trust-card, .blog-card, .step, .service-card, .rr-col');
+  if (!('IntersectionObserver' in window) || !targets.length) return;
+  targets.forEach(function(el){ el.classList.add('reveal-init'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('reveal-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.15});
+  targets.forEach(function(el){ io.observe(el); });
+})();</script>
 </body>
 </html>

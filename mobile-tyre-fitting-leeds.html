@@ -232,7 +232,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>711 Breakdown Recovery</h4>
+        <div class="footer-brand-row"><span class="footer-logo-badge">711</span><h4 style="margin-bottom:0;">711 Breakdown Recovery</h4></div>
         <p style="color:var(--paper-dim); font-size:14px; max-width:280px;">Nationwide roadside assistance across the UK. Tyres, jump starts and towing recovery — 24/7.</p>
       </div>
       <div class="footer-col">
@@ -265,6 +265,21 @@
     </div>
   </div>
 </footer>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var targets = document.querySelectorAll('.section-head, .value-card, .trust-card, .blog-card, .step, .service-card, .rr-col');
+  if (!('IntersectionObserver' in window) || !targets.length) return;
+  targets.forEach(function(el){ el.classList.add('reveal-init'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('reveal-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.15});
+  targets.forEach(function(el){ io.observe(el); });
+})();</script>
 </body>
 </html>

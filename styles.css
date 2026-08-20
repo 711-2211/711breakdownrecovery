@@ -894,6 +894,97 @@ footer.site-footer{padding:48px 0 32px;}
 
 .related-services a:hover{color:var(--amber);}
 
+/* ---- footer logo mark ---- */
+.footer-brand-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+.footer-logo-badge{
+  width:26px; height:26px;
+  background:var(--amber);
+  color:var(--asphalt);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:11px;
+  flex-shrink:0;
+}
+
+/* ---- scroll reveal ---- */
+.reveal-init{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+.reveal-in{opacity:1; transform:translateY(0);}
+
+/* ---- hover lift for cards ---- */
+.value-card, .trust-card, .blog-card, .faq-item, .step{
+  transition:transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.value-card:hover, .trust-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(242,169,59,0.3);
+}
+.blog-card:hover{transform:translateY(-3px);}
+.area-tile{transition:transform .15s ease, background .15s ease, color .15s ease;}
+.area-tile:hover{transform:translateY(-2px);}
+
+/* ---- service-specific animated icons ---- */
+@keyframes spin-slow{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+@keyframes spark-pulse{
+  0%,100%{opacity:1; filter:drop-shadow(0 0 0 rgba(242,169,59,0));}
+  50%{opacity:0.75; filter:drop-shadow(0 0 7px rgba(242,169,59,0.85));}
+}
+@keyframes drive-across{
+  0%{left:-44px;}
+  100%{left:calc(100% + 4px);}
+}
+@keyframes road-dash{
+  to{background-position:-48px 0;}
+}
+
+.hero-anim-icon .spin-el{
+  animation:spin-slow 5s linear infinite;
+  transform-origin:center;
+}
+.hero-anim-icon .spark-el{
+  animation:spark-pulse 2.2s ease-in-out infinite;
+}
+
+.truck-strip{
+  position:relative;
+  height:40px;
+  max-width:340px;
+  margin-top:28px;
+  border-radius:3px;
+  overflow:hidden;
+}
+.truck-strip .road-line{
+  position:absolute;
+  left:0; right:0; bottom:9px;
+  height:2px;
+  background-image:repeating-linear-gradient(90deg, rgba(242,169,59,0.6) 0 14px, transparent 14px 26px);
+  animation:road-dash 1.1s linear infinite;
+}
+.truck-strip .truck-icon{
+  position:absolute;
+  bottom:6px;
+  left:-44px;
+  width:38px; height:auto;
+  color:var(--amber);
+  animation:drive-across 5s linear infinite;
+}
+
+.jump-start-badge svg{
+  animation:spark-pulse 2.2s ease-in-out infinite;
+}
+.tyre-badge-spin svg{
+  animation:spin-slow 6s linear infinite;
+  transform-origin:50% 50%;
+}
+
 /* ---- service badge (icon treatment) ---- */
 .service-badge{
   width:56px;height:56px;

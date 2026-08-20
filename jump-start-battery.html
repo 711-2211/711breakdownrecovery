@@ -74,10 +74,21 @@
   </div>
 </header>
 <section class="page-hero">
-  <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="index.html#services">Services</a> / Jump start &amp; battery</div>
-    <h1>Jump start &amp; battery</h1>
-    <p class="lead">A flat battery is one of the most common breakdown calls we get — and usually one of the fastest to fix. We'll get to you and have your engine running again in minutes.</p>
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+    <div>
+      <div class="breadcrumb"><a href="index.html">Home</a> / <a href="index.html#services">Services</a> / Jump start &amp; battery</div>
+      <h1>Jump start &amp; battery</h1>
+      <p class="lead">A flat battery is one of the most common breakdown calls we get — and usually one of the fastest to fix. We'll get to you and have your engine running again in minutes.</p>
+    </div>
+    <div class="hero-anim-icon" aria-hidden="true" style="flex-shrink:0;">
+      <svg class="spark-el" width="72" height="86" viewBox="0 0 60 72" fill="none">
+        <rect x="10" y="14" width="40" height="52" rx="4" fill="#1C3A5E" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+        <rect x="22" y="6" width="16" height="10" rx="2" fill="#1C3A5E" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+        <rect x="16" y="30" width="28" height="18" rx="2" fill="#0F2038"/>
+        <path d="M32 30 24 41h6l-3 9 11-13h-6l3-7Z" fill="#F2A93B"/>
+        <rect x="16" y="54" width="28" height="4" rx="1.5" fill="#2E8B67" opacity="0.85"/>
+      </svg>
+    </div>
   </div>
 </section>
 
@@ -125,7 +136,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>711 Breakdown Recovery</h4>
+        <div class="footer-brand-row"><span class="footer-logo-badge">711</span><h4 style="margin-bottom:0;">711 Breakdown Recovery</h4></div>
         <p style="color:var(--paper-dim); font-size:14px; max-width:280px;">Nationwide roadside assistance across the UK. Tyres, jump starts and towing recovery — 24/7.</p>
       </div>
       <div class="footer-col">
@@ -158,6 +169,21 @@
     </div>
   </div>
 </footer>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var targets = document.querySelectorAll('.section-head, .value-card, .trust-card, .blog-card, .step, .service-card, .rr-col');
+  if (!('IntersectionObserver' in window) || !targets.length) return;
+  targets.forEach(function(el){ el.classList.add('reveal-init'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('reveal-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.15});
+  targets.forEach(function(el){ io.observe(el); });
+})();</script>
 </body>
 </html>

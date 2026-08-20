@@ -78,6 +78,17 @@
     <div class="breadcrumb"><a href="index.html">Home</a> / <a href="index.html#services">Services</a> / Towing &amp; recovery</div>
     <h1>Towing &amp; recovery</h1>
     <p class="lead">When a vehicle can't be fixed roadside, we'll recover it safely to a garage, home address, or location of your choice — anywhere in the UK.</p>
+    <div class="truck-strip" aria-hidden="true">
+      <div class="road-line"></div>
+      <svg class="truck-icon" viewBox="0 0 48 28" fill="none">
+        <path d="M1 20V9h20v11" stroke="currentColor" stroke-width="2"/>
+        <path d="M21 12h11l6 5v3h-4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M1 9 4 3h14v6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="9" cy="21" r="3" fill="#0B1B2E" stroke="currentColor" stroke-width="2"/>
+        <circle cx="32" cy="21" r="3" fill="#0B1B2E" stroke="currentColor" stroke-width="2"/>
+        <line x1="12" y1="21" x2="29" y2="21" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
   </div>
 </section>
 
@@ -130,7 +141,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>711 Breakdown Recovery</h4>
+        <div class="footer-brand-row"><span class="footer-logo-badge">711</span><h4 style="margin-bottom:0;">711 Breakdown Recovery</h4></div>
         <p style="color:var(--paper-dim); font-size:14px; max-width:280px;">Nationwide roadside assistance across the UK. Tyres, jump starts and towing recovery — 24/7.</p>
       </div>
       <div class="footer-col">
@@ -163,6 +174,21 @@
     </div>
   </div>
 </footer>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var targets = document.querySelectorAll('.section-head, .value-card, .trust-card, .blog-card, .step, .service-card, .rr-col');
+  if (!('IntersectionObserver' in window) || !targets.length) return;
+  targets.forEach(function(el){ el.classList.add('reveal-init'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('reveal-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.15});
+  targets.forEach(function(el){ io.observe(el); });
+})();</script>
 </body>
 </html>
