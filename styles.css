@@ -9,7 +9,9 @@
     --paper-dim: #B9C2D1;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden; max-width:100%;}
+  body{overflow-x:hidden; max-width:100%;}
+  h1,h2,h3,p,a,span,li,button,input,select,textarea{overflow-wrap:break-word; word-break:break-word;}
   body{
     background:var(--asphalt);
     color:var(--paper);
@@ -208,6 +210,12 @@
     .hero{padding:56px 0 48px;}
     .hero h1{font-size:36px;}
   }
+  @media (max-width:400px){
+    .wrap{padding:0 16px;}
+    .hero h1{font-size:28px;}
+    .hero p.lead{font-size:15px;}
+    .eyebrow{font-size:11px;}
+  }
 
   /* ---- board / signature element ---- */
   .board{
@@ -239,7 +247,7 @@
   }
 
   /* ---- section headings ---- */
-  .section{padding:80px 0;}
+  .section{padding-top:80px; padding-bottom:80px;}
   .section-head{
     max-width:600px;
     margin-bottom:48px;
@@ -256,6 +264,13 @@
     font-size:34px;
     font-weight:600;
     color:var(--paper);
+  }
+  @media (max-width:640px){
+    .section h2{font-size:26px;}
+  }
+  @media (max-width:400px){
+    .section h2{font-size:22px;}
+    .section{padding-top:56px; padding-bottom:56px;}
   }
   .section p.sub{
     color:var(--paper-dim);
@@ -429,6 +444,10 @@
 }
 @media (max-width:640px){
   .page-hero h1{font-size:28px;}
+}
+@media (max-width:400px){
+  .page-hero h1{font-size:24px;}
+  .page-hero p.lead{font-size:14.5px;}
 }
 
 /* ---- footer nav (site-wide, expanded) ---- */
@@ -813,7 +832,8 @@ footer.site-footer{padding:48px 0 32px;}
 .article-body{
   max-width:720px;
   margin:0 auto;
-  padding:56px 0;
+  padding-top:56px;
+  padding-bottom:56px;
 }
 .article-body h2{
   font-size:24px;
@@ -1085,6 +1105,113 @@ footer.site-footer{padding:48px 0 32px;}
   .logo-word{display:none;}
   header .wrap{gap:10px;}
 }
+
+/* ---- availability results panel ---- */
+.availability-result{
+  margin-top:28px;
+  padding-top:28px;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+.ar-header{
+  font-family:'Oswald',sans-serif;
+  font-size:20px;
+  font-weight:600;
+  color:var(--paper);
+  margin-bottom:18px;
+}
+.ar-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-bottom:18px;
+}
+@media (max-width:640px){
+  .ar-grid{grid-template-columns:1fr;}
+}
+.ar-details{
+  background:var(--asphalt);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px;
+  padding:18px 20px;
+}
+.ar-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14px;
+}
+.ar-row:last-child{border-bottom:none;}
+.ar-row span{color:var(--paper-dim); flex-shrink:0;}
+.ar-row strong{color:var(--paper); text-align:right; word-break:break-word;}
+.ar-service-card{
+  background:var(--asphalt);
+  border:1px solid rgba(242,169,59,0.35);
+  border-radius:6px;
+  padding:18px 20px;
+  text-align:center;
+}
+.ar-service-card.ar-emergency{border-color:rgba(215,38,61,0.4);}
+.ar-service-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.06em;
+  color:var(--paper-dim);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.ar-service-time{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:32px;
+  color:var(--amber);
+  line-height:1;
+  margin-bottom:10px;
+}
+.ar-emergency .ar-service-time{color:var(--red);}
+.ar-service-time span{font-size:14px; color:var(--paper); margin-left:4px;}
+.ar-service-card p{
+  font-size:13px;
+  color:var(--paper-dim);
+  margin:0;
+}
+.ar-note{
+  font-size:13.5px;
+  color:var(--paper-dim);
+  margin-bottom:16px;
+}
+
+/* ---- UK coverage map ---- */
+.uk-map-wrap{
+  display:flex;
+  justify-content:center;
+  padding:20px 0;
+}
+.uk-map-wrap svg{width:100%; max-width:260px; height:auto;}
+.map-legend{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 16px;
+  margin-top:20px;
+}
+@media (max-width:480px){
+  .map-legend{grid-template-columns:1fr;}
+}
+.map-legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13.5px;
+  color:var(--paper-dim);
+}
+.map-legend-dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  flex-shrink:0;
+  background:var(--red);
+}
+.map-legend-dot.hub{background:var(--amber);}
 
 /* ---- service badge (icon treatment) ---- */
 .service-badge{

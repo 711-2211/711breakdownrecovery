@@ -153,7 +153,7 @@
   <div class="quote-form-section">
     <h2>Get a fast mobile tyre quote</h2>
     <p class="qf-sub">Tell us a bit about your vehicle and we'll call or WhatsApp you back with a price — usually within minutes during working hours.</p>
-    <form class="quote-form" name="tyre-quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+    <form class="quote-form" name="tyre-quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" data-availability-form="true">
       <input type="hidden" name="form-name" value="tyre-quote">
       <p style="display:none;">
         <label>Don't fill this out if you're human: <input name="bot-field"></label>
@@ -163,7 +163,7 @@
         <div class="quick-search-bar">
           <div>
             <label for="tq-lookingfor">What are you looking for?</label>
-            <select id="tq-lookingfor" name="Looking for">
+            <select id="tq-lookingfor" name="Service needed">
               <option>Puncture repair</option>
               <option>Single tyre replacement</option>
               <option>Full set replacement</option>
@@ -214,6 +214,7 @@
       </div>
       <p class="qf-note">We'll never share your details. Prefer to talk now? <a href="tel:+447778927551" style="color:var(--amber);">Call +44 7778 927551</a> or <a href="https://wa.me/447778927551?text=Hi%2C%20I%20need%20a%20mobile%20tyre%20fitting%20quote." target="_blank" rel="noopener" style="color:var(--amber);">WhatsApp us</a>.</p>
     </form>
+    <div class="availability-result" data-result-container style="display:none;"></div>
   </div>
 </section>
 
@@ -444,5 +445,91 @@
   }, {threshold: 0.15});
   targets.forEach(function(el){ io.observe(el); });
 })();</script>
+<script>
+(function(){
+  var form = document.querySelector('form[data-availability-form]');
+  if(!form) return;
+  var resultBox = form.parentElement.querySelector('[data-result-container]');
+  if(!resultBox) return;
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function isEmergency(service){
+    var s = service.toLowerCase();
+    return s.indexOf('tow') > -1 || s.indexOf('recovery') > -1 || s.indexOf('not sure') > -1 || s.indexOf('advise me') > -1;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+
+    var data = new FormData(form);
+    if (data.get('bot-field')){ return; }
+
+    var name = (data.get('Full name') || '').toString().trim();
+    var phone = (data.get('Phone number') || '').toString().trim();
+    var reg = (data.get('Vehicle registration') || '').toString().trim();
+    var location = (data.get('Location') || '').toString().trim();
+    var service = (data.get('Service needed') || 'General assistance').toString().trim();
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn){ submitBtn.textContent = 'Checking...'; submitBtn.disabled = true; }
+
+    var encoded = new URLSearchParams();
+    data.forEach(function(value, key){ encoded.append(key, value); });
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encoded.toString()
+    }).catch(function(){ /* network hiccup: still show results below so the visitor isn't stuck */ })
+    .finally(function(){
+      if (submitBtn){ submitBtn.textContent = originalText; submitBtn.disabled = false; }
+      renderResult();
+    });
+
+    function renderResult(){
+      var rows = '';
+      if (name) rows += '<div class="ar-row"><span>Name</span><strong>' + escapeHtml(name) + '</strong></div>';
+      if (phone) rows += '<div class="ar-row"><span>Phone</span><strong>' + escapeHtml(phone) + '</strong></div>';
+      if (reg) rows += '<div class="ar-row"><span>Registration</span><strong>' + escapeHtml(reg.toUpperCase()) + '</strong></div>';
+      if (location) rows += '<div class="ar-row"><span>Location</span><strong>' + escapeHtml(location) + '</strong></div>';
+      rows += '<div class="ar-row"><span>Service</span><strong>' + escapeHtml(service) + '</strong></div>';
+
+      var serviceCard;
+      if (isEmergency(service)) {
+        serviceCard = '<div class="ar-service-card ar-emergency">' +
+          '<div class="ar-service-label">Emergency callout</div>' +
+          '<div class="ar-service-time">45<span>MIN</span></div>' +
+          '<p>For breakdown or motorway callouts, we target a 45-minute response, subject to traffic, location and availability.</p>' +
+          '</div>';
+      } else {
+        serviceCard = '<div class="ar-service-card">' +
+          '<div class="ar-service-label">Next available slot</div>' +
+          '<div class="ar-service-time" style="font-size:22px;">Tomorrow</div>' +
+          '<p>9:00 AM &ndash; 6:00 PM &mdash; we’ll confirm an exact time when we call you back.</p>' +
+          '</div>';
+      }
+
+      resultBox.innerHTML =
+        '<div class="ar-header">Thanks' + (name ? ', ' + escapeHtml(name) : '') + ' — here’s your availability</div>' +
+        '<div class="ar-grid"><div class="ar-details">' + rows + '</div>' + serviceCard + '</div>' +
+        '<p class="ar-note">We’ve got your details and will confirm by phone or WhatsApp shortly. Need it sooner?</p>' +
+        '<div class="cta-actions" style="justify-content:flex-start;">' +
+        '<a class="btn btn-call" href="tel:+447778927551">Call +44 7778 927551</a>' +
+        '<a class="btn btn-whatsapp" href="https://wa.me/447778927551" target="_blank" rel="noopener">Message on WhatsApp</a>' +
+        '</div>';
+      resultBox.style.display = 'block';
+      form.reset();
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+})();
+</script>
 </body>
 </html>
