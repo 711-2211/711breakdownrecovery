@@ -1213,6 +1213,103 @@ footer.site-footer{padding:48px 0 32px;}
 }
 .map-legend-dot.hub{background:var(--amber);}
 
+/* ---- pricing section ---- */
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+@media (max-width:900px){
+  .pricing-grid{grid-template-columns:1fr; max-width:480px; margin:0 auto;}
+}
+.pricing-card{
+  background:var(--asphalt-2);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  padding:32px 28px;
+  display:flex;
+  flex-direction:column;
+  transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.pricing-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(242,169,59,0.4);
+  box-shadow:0 12px 28px rgba(0,0,0,0.28);
+}
+.pricing-card h3{
+  font-size:19px;
+  color:var(--paper);
+  margin:4px 0 8px;
+  text-transform:none;
+}
+.pricing-desc{
+  font-size:14px;
+  color:var(--paper-dim);
+  margin-bottom:22px;
+}
+.pricing-price-wrap{
+  border-top:1px solid rgba(255,255,255,0.08);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding:18px 0;
+  margin-bottom:22px;
+}
+.pricing-from{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.08em;
+  color:var(--paper-dim);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.pricing-price{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:42px;
+  color:var(--amber);
+  line-height:1;
+}
+.pricing-price span{
+  font-size:15px;
+  font-weight:500;
+  color:var(--paper-dim);
+  margin-left:6px;
+}
+.pricing-features{
+  list-style:none;
+  margin-bottom:26px;
+  flex-grow:1;
+}
+.pricing-features li{
+  font-size:14px;
+  color:var(--paper-dim);
+  padding:7px 0;
+  padding-left:20px;
+  position:relative;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.pricing-features li:last-child{border-bottom:none;}
+.pricing-features li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  color:var(--amber);
+  font-weight:700;
+}
+.pricing-cta{width:100%; justify-content:center;}
+.pricing-disclaimer{
+  max-width:760px;
+  margin:32px auto 0;
+  background:var(--asphalt-2);
+  border:1px solid rgba(242,169,59,0.25);
+  border-left:4px solid var(--amber);
+  border-radius:6px;
+  padding:16px 20px;
+  font-size:13.5px;
+  color:var(--paper-dim);
+  text-align:left;
+}
+
 /* ---- service badge (icon treatment) ---- */
 .service-badge{
   width:56px;height:56px;
