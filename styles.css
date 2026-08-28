@@ -1310,6 +1310,33 @@ footer.site-footer{padding:48px 0 32px;}
   text-align:left;
 }
 
+/* ---- footer legal links ---- */
+.footer-legal-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 18px;
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.footer-legal-links a{
+  font-size:12.5px;
+  color:var(--paper-dim);
+  opacity:0.8;
+}
+.footer-legal-links a:hover{color:var(--amber); opacity:1;}
+
+/* ---- legal page placeholder callout ---- */
+.legal-placeholder{
+  background:rgba(242,169,59,0.1);
+  border:1px dashed rgba(242,169,59,0.5);
+  border-radius:4px;
+  padding:2px 8px;
+  color:var(--amber);
+  font-weight:600;
+  font-size:0.95em;
+}
+
 /* ---- service badge (icon treatment) ---- */
 .service-badge{
   width:56px;height:56px;
